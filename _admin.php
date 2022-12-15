@@ -1,14 +1,40 @@
 <?php
-# -- BEGIN LICENSE BLOCK ----------------------------------
-# This file is part of Email Optionnel, a plugin for Dotclear.
-#
-# Copyright (c) 2007-2020 Oleksandr Syenchuk, Pierre Van Glabeke, Gvx
-#
-# Licensed under the GPL version 2.0 license.
-# A copy is available in LICENSE file or at
-# http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
-# -- END LICENSE BLOCK ------------------------------------
-if (!defined('DC_CONTEXT_ADMIN')) { return; }
+/**
+ * @brief emailOptionnel, a plugin for Dotclear 2
+ *
+ * @package Dotclear
+ * @subpackage Plugin
+ *
+ * @author Oleksandr Syenchuk, Pierre Van Glabeke, Gvx and Contributors
+ *
+ * @copyright Jean-Crhistian Denis
+ * @copyright GPL-2.0 https://www.gnu.org/licenses/gpl-2.0.html
+ */
+if (!defined('DC_CONTEXT_ADMIN')) {
+    return null;
+}
 
-$core->addBehavior('adminBlogPreferencesForm', array('emailOptionnelBehaviors', 'adminBlogPreferencesForm'));
-$core->addBehavior('adminBeforeBlogSettingsUpdate', array('emailOptionnelBehaviors', 'adminBeforeBlogSettingsUpdate'));
+dcCore::app()->addBehavior('adminBlogPreferencesFormV2', function () {
+    dcCore::app()->blog->settings->addNamespace(initEmailOptionnel::SETTING_NAME);
+
+    echo
+    '<div class="fieldset"><h4 id="emailOptionnelParam">' . __('Optional e-mail address') . '</h4>' .
+    '<p>' . form::checkbox(
+        initEmailOptionnel::SETTING_NAME,
+        '1',
+        dcCore::app()->blog->settings->__get(initEmailOptionnel::SETTING_NAME)->enabled ? true : false
+    ) .
+    '<label class="classic" for="' . initEmailOptionnel::SETTING_NAME . '">' . __('Make e-mail address optional in comments') . '</label></p>' .
+    '</div>';
+});
+
+dcCore::app()->addBehavior('adminBeforeBlogSettingsUpdate', function ($blog_settings) {
+    dcCore::app()->blog->settings->addNamespace(initEmailOptionnel::SETTING_NAME);
+
+    $blog_settings->__get(initEmailOptionnel::SETTING_NAME)->put(
+        'enabled',
+        empty($_POST[initEmailOptionnel::SETTING_NAME]) ? false : true,
+        'boolean',
+        __('Make e-mail address optional in comments')
+    );
+});

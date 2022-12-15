@@ -1,17 +1,18 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: emailOptionnel 1.0\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
-"Last-Translator: brol <contact@brol.info>\n"
+"PO-Revision-Date: 2022-12-15T22:15:54+00:00\n"
+"Last-Translator: Jean-Crhistian Denis\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 msgid "Optional e-mail address"
 msgstr "Adresse e-mail optionnelle"
 
 msgid "Make e-mail address optional in comments"
 msgstr "Rendre la saisie de l'adresse e-mail optionnelle dans les commentaires"
+
