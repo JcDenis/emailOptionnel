@@ -3,7 +3,7 @@
 [![Release](https://img.shields.io/github/v/release/JcDenis/emailOptionnel)](https://github.com/JcDenis/emailOptionnel/releases)
 [![Date](https://img.shields.io/github/release-date/JcDenis/emailOptionnel)](https://github.com/JcDenis/emailOptionnel/releases)
 [![Issues](https://img.shields.io/github/issues/JcDenis/emailOptionnel)](https://github.com/JcDenis/emailOptionnel/issues)
-[![Dotclear](https://img.shields.io/badge/dotclear-v2.24-blue.svg)](https://fr.dotclear.org/download)
+[![Dotclear](https://img.shields.io/badge/dotclear-v2.26-blue.svg)](https://fr.dotclear.org/download)
 [![Dotaddict](https://img.shields.io/badge/dotaddict-official-green.svg)](https://plugins.dotaddict.org/dc2/details/emailOptionnel)
 [![License](https://img.shields.io/github/license/JcDenis/emailOptionnel)](https://github.com/JcDenis/emailOptionnel/blob/master/LICENSE)
 
@@ -19,7 +19,7 @@ Allow visitors to publish comments without fill in their email.
  _emailOptionnel_ requires: 
 
   * admin permissions to set up plugin
-  * Dotclear 2.24
+  * Dotclear 2.26
 
 ## USAGE
 

@@ -1,3 +1,7 @@
+1.1 - 2023.03.26
+* require Dotclear 2.26
+* use namespace
+
 1.0 - 2022.12.15
 * update to dotclear 2.24
 * use anonymous function for behaviors
