@@ -7,34 +7,57 @@
  *
  * @author Oleksandr Syenchuk, Pierre Van Glabeke, Gvx and Contributors
  *
- * @copyright Jean-Crhistian Denis
+ * @copyright Jean-Christian Denis
  * @copyright GPL-2.0 https://www.gnu.org/licenses/gpl-2.0.html
  */
-if (!defined('DC_CONTEXT_ADMIN')) {
-    return null;
+declare(strict_types=1);
+
+namespace Dotclear\Plugin\emailOptionnel;
+
+use dcCore;
+use dcNsProcess;
+use dcSettings;
+use Dotclear\Helper\Html\Form\{
+    Checkbox,
+    Label,
+    Para
+};
+
+class Backend extends dcNsProcess
+{
+    public static function init(): bool
+    {
+        static::$init = defined('DC_CONTEXT_ADMIN');
+
+        return static::$init;
+    }
+
+    public static function process(): bool
+    {
+        if (!static::$init) {
+            return false;
+        }
+
+        dcCore::app()->addBehavior('adminBlogPreferencesFormV2', function (): void {
+            echo
+            '<div class="fieldset">' .
+            '<h4 id="emailOptionnelParam">' . __('Optional e-mail address') . '</h4>' .
+            (new Para())->items([
+                (new Checkbox(My::SETTING_NAME, (bool) dcCore::app()->blog->settings->get(My::SETTING_NAME)->get('enabled')))->value(1),
+                (new Label(__('Make e-mail address optional in comments'), Label::OUTSIDE_LABEL_AFTER))->for(My::SETTING_NAME)->class('classic'),
+            ])->render() .
+            '</div>';
+        });
+
+        dcCore::app()->addBehavior('adminBeforeBlogSettingsUpdate', function (dcSettings $blog_settings): void {
+            $blog_settings->get(My::SETTING_NAME)->put(
+                'enabled',
+                !empty($_POST[My::SETTING_NAME]),
+                'boolean',
+                __('Make e-mail address optional in comments')
+            );
+        });
+
+        return true;
+    }
 }
-
-dcCore::app()->addBehavior('adminBlogPreferencesFormV2', function () {
-    dcCore::app()->blog->settings->addNamespace(initEmailOptionnel::SETTING_NAME);
-
-    echo
-    '<div class="fieldset"><h4 id="emailOptionnelParam">' . __('Optional e-mail address') . '</h4>' .
-    '<p>' . form::checkbox(
-        initEmailOptionnel::SETTING_NAME,
-        '1',
-        dcCore::app()->blog->settings->__get(initEmailOptionnel::SETTING_NAME)->enabled ? true : false
-    ) .
-    '<label class="classic" for="' . initEmailOptionnel::SETTING_NAME . '">' . __('Make e-mail address optional in comments') . '</label></p>' .
-    '</div>';
-});
-
-dcCore::app()->addBehavior('adminBeforeBlogSettingsUpdate', function ($blog_settings) {
-    dcCore::app()->blog->settings->addNamespace(initEmailOptionnel::SETTING_NAME);
-
-    $blog_settings->__get(initEmailOptionnel::SETTING_NAME)->put(
-        'enabled',
-        empty($_POST[initEmailOptionnel::SETTING_NAME]) ? false : true,
-        'boolean',
-        __('Make e-mail address optional in comments')
-    );
-});
