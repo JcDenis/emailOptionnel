@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace Dotclear\Plugin\emailOptionnel;
 
+use ArrayObject;
 use cursor;
 use dcCore;
 use dcNsProcess;
@@ -36,6 +37,11 @@ class Frontend extends dcNsProcess
 
         dcCore::app()->addBehaviors([
             'publicPrependV2' => function (): void {
+                // nullsafe PHP < 8.0
+                if (is_null(dcCore::app()->blog)) {
+                    return;
+                }
+
                 if (!isset($_POST['c_content'])
                  || !empty($_POST['preview'])
                  || !empty($_POST['c_mail'])
@@ -45,12 +51,22 @@ class Frontend extends dcNsProcess
                 }
                 $_POST['c_mail'] = My::DEFAULT_EMAIL;
             },
-            'publicBeforeCommentCreate' => function (cursor $cur) {
+            'publicBeforeCommentCreate' => function (cursor $cur): void {
+                // nullsafe PHP < 8.0
+                if (is_null(dcCore::app()->blog) || is_null(dcCore::app()->ctx)) {
+                    return;
+                }
+
                 if (dcCore::app()->blog->settings->get(My::SETTING_NAME)->get('enabled')
                  && $cur->getField('comment_email') == My::DEFAULT_EMAIL
                 ) {
                     # désactive l'affichage du mail dans le template
-                    dcCore::app()->ctx->comment_preview['mail'] = '';
+                    $cp = dcCore::app()->ctx->__get('comment_preview');
+                    if (is_a($cp, 'ArrayObject')) {
+                        $cp = new ArrayObject([]);
+                    }
+                    $cp['mail'] = '';
+                    dcCore::app()->ctx->__set('comment_preview', $cp);
                     # n'enregistre pas de mail dans la BDD
                     $cur->setField('comment_email', '');
                     # n'enregistre pas le mail dans le cookie
@@ -68,7 +84,12 @@ class Frontend extends dcNsProcess
                     setcookie('comment_info', $c_cookie, strtotime('+3 month'), '/');
                 }
             },
-            'publicHeadContent' => function () {
+            'publicHeadContent' => function (): void {
+                // nullsafe PHP < 8.0
+                if (is_null(dcCore::app()->blog)) {
+                    return;
+                }
+
                 if (dcCore::app()->blog->settings->get(My::SETTING_NAME)->get('enabled')) {
                     echo dcUtils::jsLoad(
                         dcCore::app()->blog->getPF(My::id() . '/js/frontend.js'),

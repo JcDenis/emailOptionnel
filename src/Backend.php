@@ -39,6 +39,11 @@ class Backend extends dcNsProcess
         }
 
         dcCore::app()->addBehavior('adminBlogPreferencesFormV2', function (): void {
+            // nullsafe PHP < 8.0
+            if (is_null(dcCore::app()->blog)) {
+                return;
+            }
+
             echo
             '<div class="fieldset">' .
             '<h4 id="emailOptionnelParam">' . __('Optional e-mail address') . '</h4>' .
