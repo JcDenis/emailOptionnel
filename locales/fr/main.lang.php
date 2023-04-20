@@ -9,5 +9,7 @@
 # DOT NOT MODIFY THIS FILE !
 #
 
-l10n::$locales['Optional e-mail address']                  = 'Adresse e-mail optionnelle';
-l10n::$locales['Make e-mail address optional in comments'] = 'Rendre la saisie de l\'adresse e-mail optionnelle dans les commentaires';
+use Dotclear\Helper\L10n;
+
+L10n::$locales['Optional e-mail address']                  = 'Adresse e-mail optionnelle';
+L10n::$locales['Make e-mail address optional in comments'] = 'Rendre la saisie de l\'adresse e-mail optionnelle dans les commentaires';
