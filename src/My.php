@@ -17,12 +17,14 @@ namespace Dotclear\Plugin\emailOptionnel;
 use dcCore;
 
 /**
- * Plugin definitions
+ * Module definitions shortcut.
  */
 class My extends \initEmailOptionnel
 {
     /**
-     * This module id
+     * This module id.
+     *
+     * @return  string  The module ID
      */
     public static function id(): string
     {
@@ -30,7 +32,9 @@ class My extends \initEmailOptionnel
     }
 
     /**
-     * This module name
+     * This module name.
+     *
+     * @return  string  The module translated name
      */
     public static function name(): string
     {
