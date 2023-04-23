@@ -18,7 +18,7 @@ $this->registerModule(
     'emailOptionnel',
     'Make e-mail address optional in comments',
     'Oleksandr Syenchuk, Pierre Van Glabeke, Gvx and Contributors',
-    '1.1',
+    '1.2',
     [
         'requires'    => [['core', '2.26']],
         'permissions' => dcCore::app()->auth->makePermissions([
