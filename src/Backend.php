@@ -47,10 +47,10 @@ class Backend extends dcNsProcess
             echo
             '<div class="fieldset">' .
             '<h4 id="emailOptionnelParam">' . __('Optional e-mail address') . '</h4>' .
-            (new Para())->items([
-                (new Checkbox(My::SETTING_NAME, (bool) dcCore::app()->blog->settings->get(My::SETTING_NAME)->get('enabled')))->value(1),
-                (new Label(__('Make e-mail address optional in comments'), Label::OUTSIDE_LABEL_AFTER))->for(My::SETTING_NAME)->class('classic'),
-            ])->render() .
+            (new Para())->__call('items', [[
+                (new Checkbox(My::SETTING_NAME, (bool) dcCore::app()->blog->settings->get(My::SETTING_NAME)->get('enabled')))->__call('value', [1]),
+                (new Label(__('Make e-mail address optional in comments'), Label::OUTSIDE_LABEL_AFTER))->__call('for', [My::SETTING_NAME])->__call('class', ['classic']),
+            ]])->render() .
             '</div>';
         });
 
