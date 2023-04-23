@@ -15,10 +15,10 @@ declare(strict_types=1);
 namespace Dotclear\Plugin\emailOptionnel;
 
 use ArrayObject;
-use cursor;
 use dcCore;
 use dcNsProcess;
 use dcUtils;
+use Dotclear\Database\Cursor;
 
 class Frontend extends dcNsProcess
 {
@@ -51,7 +51,7 @@ class Frontend extends dcNsProcess
                 }
                 $_POST['c_mail'] = My::DEFAULT_EMAIL;
             },
-            'publicBeforeCommentCreate' => function (cursor $cur): void {
+            'publicBeforeCommentCreate' => function (Cursor $cur): void {
                 // nullsafe PHP < 8.0
                 if (is_null(dcCore::app()->blog) || is_null(dcCore::app()->ctx)) {
                     return;
