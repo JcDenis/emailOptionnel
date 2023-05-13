@@ -1,3 +1,7 @@
+1.3 - 2023.05.13
+* require dotclear 2.26
+* some cleaning for dc2.26 stable
+
 1.2 - 2023.04.23
 * require dotclear 2.26
 * use latest dotclear namespace
