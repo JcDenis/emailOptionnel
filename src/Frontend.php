@@ -16,7 +16,7 @@ namespace Dotclear\Plugin\emailOptionnel;
 
 use ArrayObject;
 use dcCore;
-use Dotclear\Core\Process:
+use Dotclear\Core\Process;
 use Dotclear\Database\Cursor;
 
 class Frontend extends Process
