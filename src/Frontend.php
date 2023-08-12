@@ -16,22 +16,19 @@ namespace Dotclear\Plugin\emailOptionnel;
 
 use ArrayObject;
 use dcCore;
-use dcNsProcess;
-use dcUtils;
+use Dotclear\Core\Process:
 use Dotclear\Database\Cursor;
 
-class Frontend extends dcNsProcess
+class Frontend extends Process
 {
     public static function init(): bool
     {
-        static::$init = defined('DC_RC_PATH');
-
-        return static::$init;
+        return self::status(My::checkContext(My::FRONTEND));
     }
 
     public static function process(): bool
     {
-        if (!static::$init) {
+        if (!self::status()) {
             return false;
         }
 
@@ -45,7 +42,7 @@ class Frontend extends dcNsProcess
                 if (!isset($_POST['c_content'])
                  || !empty($_POST['preview'])
                  || !empty($_POST['c_mail'])
-                 || !dcCore::app()->blog->settings->get(My::SETTING_NAME)->get('enabled')
+                 || !My::settings()->get('enabled')
                 ) {
                     return;
                 }
@@ -57,7 +54,7 @@ class Frontend extends dcNsProcess
                     return;
                 }
 
-                if (dcCore::app()->blog->settings->get(My::SETTING_NAME)->get('enabled')
+                if (My::settings()->get('enabled')
                  && $cur->getField('comment_email') == My::DEFAULT_EMAIL
                 ) {
                     # désactive l'affichage du mail dans le template
@@ -85,16 +82,8 @@ class Frontend extends dcNsProcess
                 }
             },
             'publicHeadContent' => function (): void {
-                // nullsafe PHP < 8.0
-                if (is_null(dcCore::app()->blog)) {
-                    return;
-                }
-
-                if (dcCore::app()->blog->settings->get(My::SETTING_NAME)->get('enabled')) {
-                    echo dcUtils::jsLoad(
-                        dcCore::app()->blog->getPF(My::id() . '/js/frontend.js'),
-                        dcCore::app()->plugins->moduleInfo(My::id(), 'version')
-                    );
+                if (My::settings()->get('enabled')) {
+                    echo My::jsLoad('frontend', dcCore::app()->plugins->moduleInfo(My::id(), 'version'));
                 }
             },
         ]);

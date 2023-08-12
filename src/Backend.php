@@ -15,49 +15,42 @@ declare(strict_types=1);
 namespace Dotclear\Plugin\emailOptionnel;
 
 use dcCore;
-use dcNsProcess;
 use dcSettings;
+use Dotclear\Core\Process;
 use Dotclear\Helper\Html\Form\{
     Checkbox,
     Label,
     Para
 };
 
-class Backend extends dcNsProcess
+class Backend extends Process
 {
     public static function init(): bool
     {
-        static::$init = defined('DC_CONTEXT_ADMIN');
-
-        return static::$init;
+        return self::status(My::checkContext(My::BACKEND));
     }
 
     public static function process(): bool
     {
-        if (!static::$init) {
+        if (!self::status()) {
             return false;
         }
 
-        dcCore::app()->addBehavior('adminBlogPreferencesFormV2', function (): void {
-            // nullsafe PHP < 8.0
-            if (is_null(dcCore::app()->blog)) {
-                return;
-            }
-
+        dcCore::app()->addBehavior('adminBlogPreferencesFormV2', function (dcSettings $blog_settings): void {
             echo
             '<div class="fieldset">' .
             '<h4 id="emailOptionnelParam">' . __('Optional e-mail address') . '</h4>' .
             (new Para())->__call('items', [[
-                (new Checkbox(My::SETTING_NAME, (bool) dcCore::app()->blog->settings->get(My::SETTING_NAME)->get('enabled')))->__call('value', [1]),
-                (new Label(__('Make e-mail address optional in comments'), Label::OUTSIDE_LABEL_AFTER))->__call('for', [My::SETTING_NAME])->__call('class', ['classic']),
+                (new Checkbox(My::id() . '_enabled', (bool) $blog_settings->get(My::id())->get('enabled')))->__call('value', [1]),
+                (new Label(__('Make e-mail address optional in comments'), Label::OUTSIDE_LABEL_AFTER))->__call('for', [My::id() . '_enabled'])->__call('class', ['classic']),
             ]])->render() .
             '</div>';
         });
 
         dcCore::app()->addBehavior('adminBeforeBlogSettingsUpdate', function (dcSettings $blog_settings): void {
-            $blog_settings->get(My::SETTING_NAME)->put(
+            $blog_settings->get(My::id())->put(
                 'enabled',
-                !empty($_POST[My::SETTING_NAME]),
+                !empty($_POST[My::id() . '_enabled']),
                 'boolean',
                 __('Make e-mail address optional in comments')
             );

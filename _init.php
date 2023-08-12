@@ -19,6 +19,6 @@ class initEmailOptionnel
     /** @var string Default email */
     public const DEFAULT_EMAIL = 'invalid@invalid.fr';
 
-    /** @var string This plugin setting name */
+    /** @var string NO MORE USED */
     public const SETTING_NAME = 'emailoptionnel';
 }
