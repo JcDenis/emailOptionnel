@@ -1,24 +1,22 @@
 <?php
-/**
- * @brief emailOptionnel, a plugin for Dotclear 2
- *
- * @package Dotclear
- * @subpackage Plugin
- *
- * @author Oleksandr Syenchuk, Pierre Van Glabeke, Gvx and Contributors
- *
- * @copyright Jean-Christian Denis
- * @copyright GPL-2.0 https://www.gnu.org/licenses/gpl-2.0.html
- */
+
 declare(strict_types=1);
 
 namespace Dotclear\Plugin\emailOptionnel;
 
 use ArrayObject;
-use dcCore;
+use Dotclear\App;
 use Dotclear\Core\Process;
 use Dotclear\Database\Cursor;
 
+/**
+ * @brief       emailOptionnel frontend class.
+ * @ingroup     emailOptionnel
+ *
+ * @author      Oleksandr Syenchuk (author)
+ * @author      Jean-Christian Denis (latest)
+ * @copyright   GPL-2.0 https://www.gnu.org/licenses/gpl-2.0.html
+ */
 class Frontend extends Process
 {
     public static function init(): bool
@@ -32,10 +30,9 @@ class Frontend extends Process
             return false;
         }
 
-        dcCore::app()->addBehaviors([
+        App::behavior()->addBehaviors([
             'publicPrependV2' => function (): void {
-                // nullsafe PHP < 8.0
-                if (is_null(dcCore::app()->blog)) {
+                if (!App::blog()->isDefined()) {
                     return;
                 }
 
@@ -49,8 +46,7 @@ class Frontend extends Process
                 $_POST['c_mail'] = My::DEFAULT_EMAIL;
             },
             'publicBeforeCommentCreate' => function (Cursor $cur): void {
-                // nullsafe PHP < 8.0
-                if (is_null(dcCore::app()->blog) || is_null(dcCore::app()->ctx)) {
+                if (!App::blog()->isDefined()) {
                     return;
                 }
 
@@ -58,12 +54,12 @@ class Frontend extends Process
                  && $cur->getField('comment_email') == My::DEFAULT_EMAIL
                 ) {
                     # désactive l'affichage du mail dans le template
-                    $cp = dcCore::app()->ctx->__get('comment_preview');
+                    $cp = App::frontend()->context()->__get('comment_preview');
                     if (is_a($cp, 'ArrayObject')) {
                         $cp = new ArrayObject([]);
                     }
                     $cp['mail'] = '';
-                    dcCore::app()->ctx->__set('comment_preview', $cp);
+                    App::frontend()->context()->__set('comment_preview', $cp);
                     # n'enregistre pas de mail dans la BDD
                     $cur->setField('comment_email', '');
                     # n'enregistre pas le mail dans le cookie
@@ -83,7 +79,7 @@ class Frontend extends Process
             },
             'publicHeadContent' => function (): void {
                 if (My::settings()->get('enabled')) {
-                    echo My::jsLoad('frontend', dcCore::app()->plugins->moduleInfo(My::id(), 'version'));
+                    echo My::jsLoad('frontend', App::plugins()->moduleInfo(My::id(), 'version'));
                 }
             },
         ]);

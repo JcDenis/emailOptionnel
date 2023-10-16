@@ -1,25 +1,22 @@
 # README
 
-[![Release](https://img.shields.io/badge/release-1.4-a2cbe9.svg)](https://git.dotclear.watch/JcDenis/emailOptionnel/releases)
-[![Date](https://img.shields.io/badge/date-2023.08.12-c44d58.svg)](https://git.dotclear.watch/JcDenis/emailOptionnel/releases)
-[![Dotclear](https://img.shields.io/badge/dotclear-v2.27-137bbb.svg)](https://fr.dotclear.org/download)
+[![Release](https://img.shields.io/badge/release-1.5-a2cbe9.svg)](https://git.dotclear.watch/JcDenis/emailOptionnel/releases)
+![Date](https://img.shields.io/badge/date-2023.10.16-c44d58.svg)
+[![Dotclear](https://img.shields.io/badge/dotclear-v2.28-137bbb.svg)](https://fr.dotclear.org/download)
 [![Dotaddict](https://img.shields.io/badge/dotaddict-official-9ac123.svg)](https://plugins.dotaddict.org/dc2/details/emailOptionnel)
-[![License](https://img.shields.io/github/license/JcDenis/emailOptionnel)](https://git.dotclear.watch/JcDenis/emailOptionnel/blob/master/LICENSE)
+[![License](https://img.shields.io/badge/license-GPL--2.0-ececec.svg)](https://git.dotclear.watch/JcDenis/emailOptionnel/src/branch/master/LICENSE)
 
-## WHAT IS EMAILOPTIONNEL ?
+## ABOUT
 
-_emailOptionnel_ is a plugin for the open-source 
-web publishing software called Dotclear.
+_emailOptionnel_ is a plugin for the open-source web publishing software called [Dotclear](https://www.dotclear.org).
 
-Allow visitors to publish comments without fill in their email.
+> Allow visitors to publish comments without fill in their email.
 
 ## REQUIREMENTS
 
-_emailOptionnel_ requires: 
-
-* admin permissions to set up plugin
-* Dotclear 2.27
-* PHP 7.4+
+* Dotclear 2.28
+* PHP 8.1+
+* Dotclear admin permissions to set up plugin
 
 ## USAGE
 
@@ -30,16 +27,17 @@ Go to ''blog preference'' => fieldset ''plugin preference'', fill in form.
 
 ## LINKS
 
-* License : [GNU GPL v2](https://www.gnu.org/licenses/old-licenses/lgpl-2.0.html)
-* Source & contribution : [Gitea Page](https://git.dotclear.watch/JcDenis/emailOptionnel) or [GitHub Page](https://github.com/JcDenis/enhancePostContent)
-* Packages & details : [Gitea Page](https://git.dotclear.watch/JcDenis/emailOptionnel/releases) or [Dotaddict Page](https://plugins.dotaddict.org/dc2/details/enhancePostContent)
-* Discuss and help : [Dotclear Forum](http://forum.dotclear.org/viewtopic.php?pid=332948#p332948)
+* [License](https://git.dotclear.watch/JcDenis/emailOptionnel/src/branch/master/LICENSE)
+* [Packages & details](https://git.dotclear.watch/JcDenis/emailOptionnel/releases) (or on [Dotaddict](https://plugins.dotaddict.org/dc2/details/emailOptionnel))
+* [Sources & contributions](https://git.dotclear.watch/JcDenis/emailOptionnel) (or on [GitHub](https://github.com/JcDenis/emailOptionnel))
+* [Issues & security](https://git.dotclear.watch/JcDenis/emailOptionnel/issues) (or on [GitHub](https://github.com/JcDenis/emailOptionnel/issues))
+* [Discuss & help](http://forum.dotclear.org/viewtopic.php?pid=332948#p332948)
 
 ## CONTRIBUTORS
 
 * Oleksandr Syenchuk (author)
 * Gvx
 * Pierre Van Glabeke
-* Jean-Christian Denis
+* Jean-Christian Denis (latest)
 
 You are welcome to contribute to this code.

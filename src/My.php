@@ -1,15 +1,5 @@
 <?php
-/**
- * @brief emailOptionnel, a plugin for Dotclear 2
- *
- * @package Dotclear
- * @subpackage Plugin
- *
- * @author Oleksandr Syenchuk, Pierre Van Glabeke, Gvx and Contributors
- *
- * @copyright Jean-Christian Denis
- * @copyright GPL-2.0 https://www.gnu.org/licenses/gpl-2.0.html
- */
+
 declare(strict_types=1);
 
 namespace Dotclear\Plugin\emailOptionnel;
@@ -17,10 +7,21 @@ namespace Dotclear\Plugin\emailOptionnel;
 use Dotclear\Module\MyPlugin;
 
 /**
- * This module definitions.
+ * @brief       emailOptionnel My helper.
+ * @ingroup     emailOptionnel
+ *
+ * @author      Oleksandr Syenchuk (author)
+ * @author      Jean-Christian Denis (latest)
+ * @copyright   GPL-2.0 https://www.gnu.org/licenses/gpl-2.0.html
  */
 class My extends MyPlugin
 {
-    /** @var string Default email */
+    /**
+     * Default email.
+     *
+     * @var     string  DEFAULT_EMAIL
+     */
     public const DEFAULT_EMAIL = 'invalid@invalid.fr';
+
+    // Use default permissions
 }
