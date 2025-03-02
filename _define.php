@@ -18,7 +18,7 @@ $this->registerModule(
     'emailOptionnel',
     'Make e-mail address optional in comments',
     'Oleksandr Syenchuk, Pierre Van Glabeke, Gvx and Contributors',
-    '1.5',
+    '1.5.1',
     [
         'requires'    => [['core', '2.28']],
         'permissions' => 'My',
