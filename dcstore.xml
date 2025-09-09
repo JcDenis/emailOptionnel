@@ -2,10 +2,10 @@
 <modules xmlns:da="http://dotaddict.org/da/">
   <module id="emailOptionnel">
     <name>emailOptionnel</name>
-    <version>1.6</version>
+    <version>1.6.1</version>
     <author>Oleksandr Syenchuk, Pierre Van Glabeke, Gvx and Contributors</author>
     <desc>Make e-mail address optional in comments</desc>
-    <file>https://github.com/JcDenis/emailOptionnel/releases/download/v1.6/plugin-emailOptionnel.zip</file>
+    <file>https://github.com/JcDenis/emailOptionnel/releases/download/v1.6.1/plugin-emailOptionnel.zip</file>
     <da:dcmin>2.36</da:dcmin>
     <da:details>https://github.com/JcDenis/emailOptionnel/src/branch/master/README.md</da:details>
     <da:support>https://github.com/JcDenis/emailOptionnel/issues</da:support>
