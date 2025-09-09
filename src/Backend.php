@@ -5,11 +5,8 @@ declare(strict_types=1);
 namespace Dotclear\Plugin\emailOptionnel;
 
 use Dotclear\App;
-use Dotclear\Core\Process;
-use Dotclear\Helper\Html\Form\{
-    Checkbox,
-    Label,
-    Para
+use Dotclear\Helper\Process\TraitProcess;
+use Dotclear\Helper\Html\Form\{ Checkbox, Fieldset, Img, Label, Legend, Para };
 };
 use Dotclear\Interface\Core\BlogSettingsInterface;
 
@@ -21,8 +18,10 @@ use Dotclear\Interface\Core\BlogSettingsInterface;
  * @author      Jean-Christian Denis (latest)
  * @copyright   GPL-2.0 https://www.gnu.org/licenses/gpl-2.0.html
  */
-class Backend extends Process
+class Backend
 {
+    use TraitProcess;
+
     public static function init(): bool
     {
         return self::status(My::checkContext(My::BACKEND));
@@ -36,14 +35,17 @@ class Backend extends Process
 
         App::behavior()->addBehaviors([
             'adminBlogPreferencesFormV2' => function (BlogSettingsInterface $blog_settings): void {
-                echo
-                '<div class="fieldset">' .
-                '<h4 id="emailOptionnelParam">' . __('Optional e-mail address') . '</h4>' .
-                (new Para())->__call('items', [[
-                    (new Checkbox(My::id() . '_enabled', (bool) $blog_settings->get(My::id())->get('enabled')))->__call('value', [1]),
-                    (new Label(__('Make e-mail address optional in comments'), Label::OUTSIDE_LABEL_AFTER))->__call('for', [My::id() . '_enabled'])->__call('class', ['classic']),
-                ]])->render() .
-                '</div>';
+                echo (new Fieldset(My::id() . '_params'))
+                    ->legend(new Legend((new Img(My::icons()[0]))->class('icon-small')->render() . ' ' . My::name()))
+                    ->items([
+                        (new Para())
+                            ->items([
+                                (new Checkbox(My::id() . '_enabled', (bool) $blog_settings->get(My::id())->get('enabled')))
+                                    ->value(1)
+                                    ->label(new Label(__('Make e-mail address optional in comments'), Label::IL_FT)),
+                            ]),
+                    ])
+                    ->render();
             },
             'adminBeforeBlogSettingsUpdate' => function (BlogSettingsInterface $blog_settings): void {
                 $blog_settings->get(My::id())->put(
