@@ -2,7 +2,7 @@
 
 [![Release](https://img.shields.io/github/v/release/jcdenis/emailOptionnel?color=lightblue)](https://github.com/JcDenis/emailOptionnel/releases)
 ![Date](https://img.shields.io/github/release-date/jcdenis/emailOptionnel?color=red)
-[![Dotclear](https://img.shields.io/badge/dotclear-v2.33-137bbb.svg)](https://fr.dotclear.org/download)
+[![Dotclear](https://img.shields.io/badge/dotclear-v2.36-137bbb.svg)](https://fr.dotclear.org/download)
 [![Dotaddict](https://img.shields.io/badge/dotaddict-official-9ac123.svg)](https://plugins.dotaddict.org/dc2/details/emailOptionnel)
 [![License](https://img.shields.io/github/license/jcdenis/emailOptionnel?color=white)](https://github.com/JcDenis/emailOptionnel/blob/master/LICENSE)
 
@@ -14,7 +14,7 @@ _emailOptionnel_ is a plugin for the open-source web publishing software called 
 
 ## REQUIREMENTS
 
-* Dotclear 2.28
+* Dotclear 2.36
 * PHP 8.1+
 * Dotclear admin permissions to set up plugin
 
