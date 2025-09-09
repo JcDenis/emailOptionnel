@@ -7,7 +7,6 @@ namespace Dotclear\Plugin\emailOptionnel;
 use Dotclear\App;
 use Dotclear\Helper\Process\TraitProcess;
 use Dotclear\Helper\Html\Form\{ Checkbox, Fieldset, Img, Label, Legend, Para };
-};
 use Dotclear\Interface\Core\BlogSettingsInterface;
 
 /**
