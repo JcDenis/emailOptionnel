@@ -40,7 +40,7 @@ class Backend
         App::behavior()->addBehaviors([
             'adminBlogPreferencesFormV2' => function (BlogSettingsInterface $blog_settings): void {
                 echo (new Fieldset(My::id() . '_params'))
-                    ->legend(new Legend((new Img(My::icons()[0]))->class('icon-small')->render() . ' ' . My::name()))
+                    ->legend(new Legend(My::name()))
                     ->items([
                         (new Para())
                             ->items([
