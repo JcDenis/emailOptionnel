@@ -1,3 +1,8 @@
+emailOptionnel 1.x - xxxx.xx.xx
+===========================================================
+* Bump Dotclear from 2.36 to 2.39
+* Code review (phpstan max)
+
 emailOptionnel 1.7 - 2026.05.28
 ===========================================================
 * Fix missing plugin icon

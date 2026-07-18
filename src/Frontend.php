@@ -41,7 +41,7 @@ class Frontend
                 if (!isset($_POST['c_content'])
                  || !empty($_POST['preview'])
                  || !empty($_POST['c_mail'])
-                 || !My::settings()->get('enabled')
+                 || !My::settings()->getBool('enabled', false)
                 ) {
                     return;
                 }
@@ -57,7 +57,7 @@ class Frontend
                 ) {
                     # désactive l'affichage du mail dans le template
                     $cp = App::frontend()->context()->__get('comment_preview');
-                    if (is_a($cp, 'ArrayObject')) {
+                    if (!($cp instanceof \ArrayObject)) {
                         $cp = new ArrayObject([]);
                     }
                     $cp['mail'] = '';
@@ -68,7 +68,7 @@ class Frontend
                     if (empty($_POST['c_remember'])) {
                         return;
                     }
-                    if (!empty($_COOKIE['comment_info'])) {
+                    if (!empty($_COOKIE['comment_info']) && is_string($_COOKIE['comment_info'])) {
                         $cookie_info = explode("\n", $_COOKIE['comment_info']);
                         if (count($cookie_info) == 3) {
                             return;
@@ -80,7 +80,7 @@ class Frontend
                 }
             },
             'publicHeadContent' => function (): void {
-                if (My::settings()->get('enabled')) {
+                if (My::settings()->getBool('enabled', false) && is_string(App::plugins()->moduleInfo(My::id(), 'version'))) {
                     echo My::jsLoad('frontend', App::plugins()->moduleInfo(My::id(), 'version'));
                 }
             },

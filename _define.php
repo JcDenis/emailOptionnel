@@ -14,13 +14,17 @@
  */
 declare(strict_types=1);
 
+if (!isset($this) || !is_object($this) || !method_exists($this, 'registerModule') || !isset($this->id) || !is_string($this->id)) {
+    return;
+}
+
 $this->registerModule(
     'emailOptionnel',
     'Make e-mail address optional in comments',
     'Oleksandr Syenchuk, Pierre Van Glabeke, Gvx and Contributors',
     '1.7',
     [
-        'requires'    => [['core', '2.36']],
+        'requires'    => [['core', '2.39']],
         'permissions' => 'My',
         'settings'    => ['blog' => '#params.' . $this->id . '_params'],
         'type'        => 'plugin',

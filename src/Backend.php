@@ -44,7 +44,7 @@ class Backend
                     ->items([
                         (new Para())
                             ->items([
-                                (new Checkbox(My::id() . '_enabled', (bool) $blog_settings->get(My::id())->get('enabled')))
+                                (new Checkbox(My::id() . '_enabled', $blog_settings->get(My::id())->getBool('enabled', false)))
                                     ->value(1)
                                     ->label(new Label(__('Make e-mail address optional in comments'), Label::IL_FT)),
                             ]),
