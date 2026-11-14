@@ -7,7 +7,7 @@
     <desc>Make e-mail address optional in comments</desc>
     <file>https://github.com/JcDenis/emailOptionnel/releases/download/v1.8/plugin-emailOptionnel.zip</file>
     <da:dcmin>2.39</da:dcmin>
-    <da:details>https://github.com/JcDenis/emailOptionnel/src/branch/master/README.md</da:details>
+    <da:details>https://github.com/JcDenis/emailOptionnel/blob/master/README.md</da:details>
     <da:support>https://github.com/JcDenis/emailOptionnel/issues</da:support>
   </module>
 </modules>
