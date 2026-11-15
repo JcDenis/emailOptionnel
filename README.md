@@ -12,6 +12,8 @@ _emailOptionnel_ is a plugin for the open-source web publishing software called 
 
 > Allow visitors to publish comments without fill in their email.
 
+A [user guide in French](https://github.com/JcDenis/emailOptionnel/blob/master/docs/fr/utilisation.md) is available.
+
 ## REQUIREMENTS
 
 * Dotclear 2.39
@@ -27,6 +29,7 @@ Go to ''blog preference'' => fieldset ''plugin preference'', fill in form.
 
 ## LINKS
 
+* [User guide (in French)](https://github.com/JcDenis/emailOptionnel/blob/master/docs/fr/utilisation.md)
 * [License](https://github.com/JcDenis/emailOptionnel/blob/master/LICENSE)
 * [Packages & details](https://github.com/JcDenis/emailOptionnel/releases) (or on [Repository](https://dotclear.org/plugin/detail/emailOptionnel))
 * [Sources & contributions](https://github.com/JcDenis/emailOptionnel)
