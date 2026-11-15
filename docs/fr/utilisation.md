@@ -25,7 +25,7 @@ Le réglage est propre à chaque blog.
 
 ## Ce que voient les visiteurs
 
-Le formulaire de commentaire ne change pas d'aspect : le champ **Adresse email** est toujours présent, mais il n'est plus obligatoire. Un visiteur peut le laisser vide, prévisualiser son commentaire puis l'envoyer.
+Le champ **Adresse email** est toujours présent, mais il n'est plus obligatoire : son astérisque disparaît du libellé. Un visiteur peut le laisser vide, prévisualiser son commentaire puis l'envoyer.
 
 ![Le formulaire de commentaire](img/formulaire-apres.png)
 
@@ -41,6 +41,6 @@ Décochez la case dans les paramètres du blog. Le champ redevient obligatoire. 
 
 ## Bon à savoir
 
-* **L'astérisque reste affiché** : le libellé garde la mention « Adresse email * : » comme si le champ était obligatoire, même si on peut le laisser vide. Pour l'enlever, il faut modifier le modèle du thème.
-* **Le champ doit s'appeler `c_mail`** : c'est le cas dans les thèmes de Dotclear. Le plugin retire l'attribut « obligatoire » de ce champ.
+* **Le champ doit s'appeler `c_mail`** : c'est le cas dans les thèmes de Dotclear. Le plugin retire l'attribut « obligatoire » de ce champ et l'astérisque de son libellé, avec JavaScript. Sans JavaScript, l'astérisque reste affiché, mais le champ vide est quand même accepté.
+* **Se souvenir de moi** : la case garde le nom et le site web dans le navigateur du visiteur, comme d'habitude. L'adresse vide n'y change rien.
 * **Sans adresse**, tout ce qui s'appuie sur l'e-mail du commentateur (par exemple les avatars Gravatar) n'a rien à utiliser pour ces commentaires.
