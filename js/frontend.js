@@ -8,9 +8,23 @@
 // http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 // -- END LICENSE BLOCK ------------------------------------
 
-'use strict'
+'use strict';
 
-document.addEventListener("DOMContentLoaded", function() {
-	var id_mail = 'c_mail', el = document.getElementById(id_mail);
-	if(el) { el.removeAttribute('required'); }
+document.addEventListener('DOMContentLoaded', () => {
+  const field = document.getElementById('c_mail');
+  if (!field) {
+    return;
+  }
+  field.removeAttribute('required');
+
+  // Remove the required mark (asterisk) from the label
+  const label = document.querySelector('label[for="c_mail"]');
+  if (label) {
+    label.classList.remove('required');
+    for (const mark of label.querySelectorAll('span, abbr')) {
+      if (mark.textContent.trim() === '*') {
+        mark.remove();
+      }
+    }
+  }
 });

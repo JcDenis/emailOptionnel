@@ -63,20 +63,8 @@ class Frontend
                     $cp['mail'] = '';
                     App::frontend()->context()->__set('comment_preview', $cp);
                     # n'enregistre pas de mail dans la BDD
+                    # ("se souvenir de moi" est géré par le navigateur, avec le champ resté vide)
                     $cur->setField('comment_email', '');
-                    # n'enregistre pas le mail dans le cookie
-                    if (empty($_POST['c_remember'])) {
-                        return;
-                    }
-                    if (!empty($_COOKIE['comment_info']) && is_string($_COOKIE['comment_info'])) {
-                        $cookie_info = explode("\n", $_COOKIE['comment_info']);
-                        if (count($cookie_info) == 3) {
-                            return;
-                        }
-                    }
-                    $c_cookie = ['name' => $cur->getField('comment_author'), 'mail' => $cur->getField('comment_email'), 'site' => $cur->getField('comment_site')];
-                    $c_cookie = serialize($c_cookie);
-                    setcookie('comment_info', $c_cookie, strtotime('+3 month'), '/');
                 }
             },
             'publicHeadContent' => function (): void {

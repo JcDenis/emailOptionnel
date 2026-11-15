@@ -21,7 +21,7 @@ class My extends MyPlugin
      *
      * @var     string  DEFAULT_EMAIL
      */
-    public const DEFAULT_EMAIL = 'invalid@invalid.fr';
+    public const DEFAULT_EMAIL = 'no-reply@example.invalid';
 
     // Use default permissions
 }
